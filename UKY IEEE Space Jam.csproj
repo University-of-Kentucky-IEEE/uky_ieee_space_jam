@@ -5,4 +5,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>UKYIEEESpaceJam</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Notes.md" />
+  </ItemGroup>
 </Project>
