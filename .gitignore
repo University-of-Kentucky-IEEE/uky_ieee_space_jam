@@ -4,3 +4,5 @@
 
 # csharp ignores
 .idea/
+*.user
+
