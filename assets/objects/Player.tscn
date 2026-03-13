@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://w8r81rqss18l"]
 
-[ext_resource type="Script" uid="uid://618r8leueno5" path="res://Player.cs" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://618r8leueno5" path="res://assets/scripts/Player.cs" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://b4nd6qg7hlytv" path="res://Ismael.png" id="2_kpjcp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sh265"]
@@ -38,7 +38,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_tdg3f")
 }],
 "loop": true,
-"name": &"walk",
+"name": &"Walking",
 "speed": 5.0
 }]
 
@@ -55,7 +55,7 @@ z_index = 1
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_dtqjt")
-animation = &"walk"
+animation = &"Walking"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1618216162]
 position_smoothing_enabled = true
