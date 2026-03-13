@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bw7jcrdwynwwb"]
+
+[ext_resource type="Script" uid="uid://6vdxcowtnon5" path="res://assets/scripts/Start/Start.cs" id="1_52bhu"]
+[ext_resource type="Script" uid="uid://b7582gpskh84s" path="res://assets/scripts/Start/Quit.cs" id="2_upmy7"]
+
+[node name="Start" type="Control" unique_id=1224033381]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1195054847]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1330921217]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "Space Jam"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=487927262]
+layout_mode = 2
+
+[node name="Start" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=580583991]
+layout_mode = 2
+text = "Start Game"
+script = ExtResource("1_52bhu")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=1855645289]
+layout_mode = 2
+
+[node name="Quit" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=119830967]
+layout_mode = 2
+text = "Quit"
+script = ExtResource("2_upmy7")

@@ -6,6 +6,14 @@ public partial class Player : CharacterBody2D
 {
 	private const int MaxSpeed = 100;
 
+	private const float gravity = 20f;
+
+	[Export]
+	public bool IsRPG = true;
+	
+	[Export]
+	public RayCast2D GroundRayCast;
+
 	private AnimatedSprite2D Animation = null;
 
 	public override void _Ready()
@@ -28,10 +36,20 @@ public partial class Player : CharacterBody2D
 			SetVelocity(GetVelocity() - new Vector2(MaxSpeed, 0));
 		if (Input.IsActionPressed("MoveRight"))
 			SetVelocity(GetVelocity() + new Vector2(MaxSpeed, 0));
-		if (Input.IsActionPressed("MoveUp"))
-			SetVelocity(GetVelocity() - new Vector2(0, MaxSpeed));
-		if (Input.IsActionPressed("MoveDown"))
-			SetVelocity(GetVelocity() + new Vector2(0, MaxSpeed));
+		if (IsRPG)
+		{
+			if (Input.IsActionPressed("MoveUp"))
+				SetVelocity(GetVelocity() - new Vector2(0, MaxSpeed));
+			if (Input.IsActionPressed("MoveDown"))
+				SetVelocity(GetVelocity() + new Vector2(0, MaxSpeed));	
+		}
+		else
+		{
+			if (Input.IsActionJustPressed("MoveUp") && GroundRayCast.IsColliding())
+			{
+				SetVelocity(GetVelocity() - new Vector2(0, MaxSpeed));
+			}
+		}
 
 		if (GetVelocity() != Vector2.Zero)
 		{
