@@ -6,14 +6,6 @@ public partial class Player : CharacterBody2D
 {
 	private const int MaxSpeed = 100;
 
-	private const float gravity = 20f;
-
-	[Export]
-	public bool IsRPG = true;
-	
-	[Export]
-	public RayCast2D GroundRayCast;
-
 	private AnimatedSprite2D Animation = null;
 
 	public override void _Ready()
