@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://c7ver45755vg6"]
+
+[ext_resource type="Script" uid="uid://cmyd3s1ao0prn" path="res://assets/scripts/Enemy.cs" id="1_fsmwv"]
+[ext_resource type="Texture2D" uid="uid://b4nd6qg7hlytv" path="res://Ismael.png" id="1_tqr8c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fsmwv"]
+radius = 34.0147
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kne1u"]
+atlas = ExtResource("1_tqr8c")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e80uo"]
+atlas = ExtResource("1_tqr8c")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxr5p"]
+atlas = ExtResource("1_tqr8c")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdg3f"]
+atlas = ExtResource("1_tqr8c")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t8f85"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kne1u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e80uo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxr5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdg3f")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t8f85"]
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1603023105]
+script = ExtResource("1_fsmwv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=354842167]
+shape = SubResource("CircleShape2D_fsmwv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1133247817]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_t8f85")
+animation = &"walk"
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1009157178]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=622410969]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1058702628]
+shape = SubResource("CircleShape2D_t8f85")

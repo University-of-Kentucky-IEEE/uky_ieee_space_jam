@@ -1,0 +1,28 @@
+Jar of jam slowly dying
+
+Move fast
+Need more jam or die
+
+Jam everywhere possesed as creatures wanting to kill you.
+Kill them all for the jam to stay alive
+
+Lose jam at slower rate when still
+Turn based? No
+
+Weapons:
+- Portal Gun
+- Shotgun
+
+When approaching enemy:
+
+Shoot it or dash into it
+Dash into it to absorb jam
+
+Player can take damage and lose jam
+
+Ammo is your own health
+
+Escape a room
+Find three jams that mix to open door
+Door sucks you out and you freeze to stop losing more jam
+Score is how much jam you have when you escape
