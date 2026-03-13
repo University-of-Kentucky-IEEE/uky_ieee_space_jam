@@ -4,8 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b4nd6qg7hlytv" path="res://Ismael.png" id="2_kpjcp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sh265"]
-radius = 26.0
-height = 64.0
+height = 54.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kne1u"]
 atlas = ExtResource("2_kpjcp")
@@ -47,10 +46,16 @@ animations = [{
 script = ExtResource("1_4flbx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1680430323]
+position = Vector2(0, 20)
+rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_sh265")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1434163368]
+z_index = 1
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_dtqjt")
 animation = &"walk"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1618216162]
+position_smoothing_enabled = true

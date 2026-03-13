@@ -4,60 +4,57 @@ namespace UKYIEEESpaceJam;
 
 public partial class Player : CharacterBody2D
 {
-	private const int MaxSpeed = 100;
-
-	private const float gravity = 20f;
-
+	[ExportGroup("Movement Parameters")]
 	[Export]
-	public bool IsRPG = true;
+	public float MovementFriction = 10;
+	[Export]
+	public float Acceleration = 100;
+
+	private static Vector2 GetInputDirection()
+	{
+		return Input.GetVector("MoveLeft", "MoveRight", "MoveUp", "MoveDown");
+	}
+	
+	[Export]
+	public bool IsRpg = true;
 	
 	[Export]
 	public RayCast2D GroundRayCast;
 
-	private AnimatedSprite2D Animation = null;
+	private AnimatedSprite2D _animation = null;
+	private Vector2 _inputMovement;
 
 	public override void _Ready()
 	{
 		base._Ready();
 		
-		Animation = (AnimatedSprite2D)FindChild("AnimatedSprite2D");
+		_animation = (AnimatedSprite2D)FindChild("AnimatedSprite2D");
 		
-		GD.Print("hello!");
+		GD.Print("hello from player!");
 	}
 
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
 
-		SetVelocity(Vector2.Zero);
+		Vector2 v = GetInputDirection();
+		Vector2 damp = -v;
 		
-		// Make a 2D RPG-style mover
-		if (Input.IsActionPressed("MoveLeft"))
-			SetVelocity(GetVelocity() - new Vector2(MaxSpeed, 0));
-		if (Input.IsActionPressed("MoveRight"))
-			SetVelocity(GetVelocity() + new Vector2(MaxSpeed, 0));
-		if (IsRPG)
-		{
-			if (Input.IsActionPressed("MoveUp"))
-				SetVelocity(GetVelocity() - new Vector2(0, MaxSpeed));
-			if (Input.IsActionPressed("MoveDown"))
-				SetVelocity(GetVelocity() + new Vector2(0, MaxSpeed));	
-		}
-		else
-		{
-			if (Input.IsActionJustPressed("MoveUp") && GroundRayCast.IsColliding())
-			{
-				SetVelocity(GetVelocity() - new Vector2(0, MaxSpeed));
-			}
-		}
+		// there will be a terminal velocity tuned by the movement parameters of the character
+		Vector2 currVelocity = GetVelocity();
 
-		if (GetVelocity() != Vector2.Zero)
+		currVelocity += v * (float)delta * Acceleration * 125;
+		currVelocity -= currVelocity / MovementFriction;
+		
+		SetVelocity(currVelocity);
+
+		if (GetInputDirection() != Vector2.Zero)
 		{
-			Animation.Play();
+			_animation.Play();
 		}
 		else
 		{
-			Animation.Stop();
+			_animation.Stop();
 		}
 		
 		MoveAndSlide();
