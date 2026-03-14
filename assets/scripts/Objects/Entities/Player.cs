@@ -57,7 +57,6 @@ public partial class Player : Entity
 	private double _dashTimeout;
 	private double _dashCooldown;
 
-	private bool _dead;
 
 	public override void _Ready()
 	{

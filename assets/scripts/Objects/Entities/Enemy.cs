@@ -16,9 +16,14 @@ public partial class Enemy : Entity
 	private NavigationAgent2D _navAgent;
 	
 	private Player? _player;
+	
+	private Vector2 _startPosition;
+	
+	private Timer _respawnTimer;
 
 	public override void _Ready()
 	{
+		_startPosition = GlobalPosition;
 		_detectionArea = GetNode<Area2D>("Area2D");
 		_collisionShape = GetNode<CollisionShape2D>("Area2D/CollisionShape2D");
 		_navAgent = GetNode<NavigationAgent2D>("NavigationAgent2D");
@@ -34,12 +39,15 @@ public partial class Enemy : Entity
 					break;
 			}
 		}
+		
+		_respawnTimer = GetNode<Timer>("RespawnTimer");
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
+		
 		base._PhysicsProcess(delta);
-
+		if (_dead) return;
 		if (_player != null)
 		{
 			float distanceToPlayer = GlobalPosition.DistanceTo(_player.GlobalPosition);
@@ -73,7 +81,12 @@ public partial class Enemy : Entity
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
-		
+		if (_justDied)
+		{
+			Visible = false;
+			_respawnTimer.Start();
+			
+		}
 	}
 
 	public void OnVelocityComputed(Vector2 safeVelocity)
@@ -96,6 +109,13 @@ public partial class Enemy : Entity
 	public void _On_Shoot_Timer()
 	{
 		GetNode<Hand>("Hand").HeldItem?.Use();
+	}
+
+	public void _On_Respawn_Timer()
+	{
+		GlobalPosition = _startPosition;
+		Visible = true;
+		_health = MaxHealth;
 	}
 }
 

@@ -12,4 +12,24 @@ public partial class Entity : CharacterBody2D
 
     [Export]
     public virtual double Health { get; set; }
+    
+    protected bool _dead;
+    protected bool _justDied = false;
+
+    public override void _PhysicsProcess(double delta)
+    {
+        if (_dead && _justDied) _justDied = false;
+        if (!_dead && _health == 0)
+        {
+            _dead = true;
+            _justDied = true;
+        }
+
+        if (_dead && _health > 0)
+        {
+            _dead = false;
+            _justDied = false;
+        }
+    }
+
 }
