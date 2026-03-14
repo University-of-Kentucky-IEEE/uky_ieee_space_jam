@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://w8r81rqss18l"]
 
+[ext_resource type="Script" uid="uid://coc6kia1rfr3i" path="res://assets/scripts/Objects/Entities/Entity.cs" id="1_meusr"]
 [ext_resource type="Texture2D" uid="uid://b4nd6qg7hlytv" path="res://Ismael.png" id="2_kpjcp"]
 [ext_resource type="PackedScene" uid="uid://csiju1na8hyh8" path="res://assets/Objects/Entities/Hand.tscn" id="3_m74n3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sh265"]
-height = 54.0
+radius = 24.0
+height = 60.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kne1u"]
 atlas = ExtResource("2_kpjcp")
@@ -42,16 +44,19 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_meusr"]
+radius = 26.0
+height = 64.0
+
 [node name="Entity" type="CharacterBody2D" unique_id=972041816]
 motion_mode = 1
 floor_stop_on_slope = false
 floor_block_on_wall = false
 floor_snap_length = 0.0
 platform_on_leave = 2
+script = ExtResource("1_meusr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1680430323]
-position = Vector2(0, 20)
-rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_sh265")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1434163368]
@@ -62,5 +67,10 @@ sprite_frames = SubResource("SpriteFrames_dtqjt")
 animation = &"Walking"
 
 [node name="Hand" parent="." unique_id=2141295286 instance=ExtResource("3_m74n3")]
+
+[node name="Collider" type="Area2D" parent="." unique_id=858351386]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collider" unique_id=1342122841]
+shape = SubResource("CapsuleShape2D_meusr")
 
 [editable path="Hand"]

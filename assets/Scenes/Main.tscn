@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dc3wlfubpypvq" path="res://assets/TileMap_SF/tileset_sf.png" id="2_uu6xs"]
 [ext_resource type="PackedScene" uid="uid://32qo3ohvyl4a" path="res://assets/Scenes/UI/HUD.tscn" id="3_fv13k"]
 [ext_resource type="PackedScene" uid="uid://eedbknxbmhqc" path="res://assets/Objects/Entities/Enemy.tscn" id="4_efdcx"]
+[ext_resource type="PackedScene" uid="uid://b0mntuv4ykgr3" path="res://assets/Objects/Items/Jar.tscn" id="5_17k31"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_68cx6"]
 vertices = PackedVector2Array(32, 32, -32, 32, -32, -32, 32, -32)
@@ -641,3 +642,6 @@ tile_set = SubResource("TileSet_r0du0")
 
 [node name="Enemy" parent="." unique_id=722299190 instance=ExtResource("4_efdcx")]
 position = Vector2(-173, 226)
+
+[node name="Jar" parent="." unique_id=1737218253 instance=ExtResource("5_17k31")]
+position = Vector2(-1889, -1321)

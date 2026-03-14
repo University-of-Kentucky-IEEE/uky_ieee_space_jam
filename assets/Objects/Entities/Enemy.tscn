@@ -8,6 +8,10 @@ radius = 500.0
 
 [node name="Enemy" unique_id=972041816 instance=ExtResource("1_tqr8c")]
 script = ExtResource("2_6jgos")
+Difficulty = 1
+Acceleration = 100.0
+MovementFriction = 10.0
+StopRadius = 120.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="0" unique_id=1812220741]
 
