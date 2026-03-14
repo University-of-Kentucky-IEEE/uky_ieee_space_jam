@@ -676,12 +676,16 @@ tile_set = SubResource("TileSet_r0du0")
 [node name="HUD" parent="CanvasLayer" unique_id=576364251 instance=ExtResource("3_fv13k")]
 
 [node name="Player" parent="." unique_id=972041816 instance=ExtResource("1_glv2v")]
-position = Vector2(236, -385)
+z_index = 0
+position = Vector2(-1685, -1611)
 
 [node name="Enemy" parent="." unique_id=722299190 instance=ExtResource("4_efdcx")]
+z_index = 0
 position = Vector2(-477, 196)
 
 [node name="Jar" parent="." unique_id=1737218253 instance=ExtResource("5_17k31")]
 position = Vector2(-1889, -1321)
+script = null
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=360615622]
+color = Color(0, 0, 0, 1)

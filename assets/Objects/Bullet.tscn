@@ -26,3 +26,6 @@ texture = SubResource("GradientTexture2D_r45dv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1237886365]
 shape = SubResource("RectangleShape2D_oanus")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=57499663]
+target_position = Vector2(6, 0)

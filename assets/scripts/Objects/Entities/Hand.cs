@@ -8,6 +8,7 @@ public partial class Hand : Node2D
 {
 	
 	private Node2D _mountPoint;
+	private Area2D _reachArea;
 	public Item? HeldItem { get; private set; }
 	
 	public bool IsHoldingItem => HeldItem != null;
@@ -17,6 +18,7 @@ public partial class Hand : Node2D
 	public override void _Ready()
 	{
 		_mountPoint = GetNode<Node2D>("Mount");
+		_reachArea = GetNode<Area2D>("Area2D");
 		if (_mountPoint.GetChildren().Count > 0)
 		{
 			HeldItem = _mountPoint.GetChild<Item>(0);
@@ -34,7 +36,7 @@ public partial class Hand : Node2D
 
 	public void PickupItem()
 	{
-		if (HeldItem != null) return;
+		if (HeldItem != null || _reachableItems.Count == 0) return;
 
 		if (_reachableItems[0].GetParent() == null)
 		{

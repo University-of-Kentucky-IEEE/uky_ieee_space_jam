@@ -18,5 +18,5 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2124783279]
 shape = SubResource("CircleShape2D_iwq4g")
 
-[connection signal="body_entered" from="Area2D" to="." method="_On_Item_Enter_Reach"]
-[connection signal="body_exited" from="Area2D" to="." method="_On_Item_Exit_Reach"]
+[connection signal="body_entered" from="Area2D" to="." method="OnHandEnteredReach"]
+[connection signal="body_exited" from="Area2D" to="." method="OnHandExitedReach"]
