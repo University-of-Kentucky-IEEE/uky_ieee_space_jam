@@ -69,6 +69,9 @@ animation = &"Walking"
 
 [node name="Hand" parent="." unique_id=2141295286 instance=ExtResource("3_m74n3")]
 
+[node name="Area2D" parent="Hand" index="1" unique_id=60645343]
+collision_mask = 0
+
 [node name="Collider" type="Area2D" parent="." unique_id=858351386]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collider" unique_id=1342122841]

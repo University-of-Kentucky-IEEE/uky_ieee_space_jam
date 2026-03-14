@@ -13,6 +13,7 @@ position = Vector2(64, 0)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=60645343]
 collision_layer = 4
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2124783279]
 shape = SubResource("CircleShape2D_iwq4g")
