@@ -38,6 +38,9 @@ public partial class Enemy : Entity
 				case EnemyDifficulty.Easy:
 					circleShape.Radius = 500f;
 					break;
+				case EnemyDifficulty.Medium:
+					circleShape.Radius = 1000f;
+					break;
 			}
 		}
 		
