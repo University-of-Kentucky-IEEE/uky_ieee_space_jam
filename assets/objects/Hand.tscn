@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://csiju1na8hyh8"]
+
+[ext_resource type="Script" uid="uid://dnla8gobt606w" path="res://assets/scripts/Hand.cs" id="1_dc07c"]
+
+[node name="Hand" type="Node2D" unique_id=2141295286]
+script = ExtResource("1_dc07c")
+
+[node name="Mount" type="Node2D" parent="." unique_id=1468106578]
+position = Vector2(7, 0)
