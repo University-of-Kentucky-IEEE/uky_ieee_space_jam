@@ -15,13 +15,13 @@ public partial class Enemy : Entity
 	private CollisionShape2D _collisionShape;
 	private NavigationAgent2D _navAgent;
 	
-	private Player _player;
+	private Player? _player;
 
 	public override void _Ready()
 	{
-		_detectionArea = GetChild<Area2D>(0);
-		_collisionShape = _detectionArea.GetChild<CollisionShape2D>(0);
-		_navAgent = GetChild<NavigationAgent2D>(0);
+		_detectionArea = GetNode<Area2D>("Area2D");
+		_collisionShape = GetNode<CollisionShape2D>("Area2D/CollisionShape2D");
+		_navAgent = GetNode<NavigationAgent2D>("NavigationAgent2D");
 		_navAgent.TargetDesiredDistance = StopRadius;
 
 		// Cast the shape to CircleShape2D and change the radius
