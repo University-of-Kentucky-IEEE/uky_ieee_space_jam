@@ -1,7 +1,6 @@
 using Godot;
 using System;
 using UKYIEEESpaceJam;
-using UKYIEEESpaceJam.assets.scripts;
 
 public partial class Gun : Item
 {
@@ -19,7 +18,5 @@ public partial class Gun : Item
 		
 		GetTree().GetCurrentScene().AddChild(b);
 		b.GlobalPosition = GlobalPosition;
-		if(Holder is Player player) player.Damage(5);
-		GD.Print("Shot bullet");
 	}
 }
