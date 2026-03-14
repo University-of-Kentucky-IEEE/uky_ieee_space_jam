@@ -1,4 +1,5 @@
 using Godot;
+using Godot.NativeInterop;
 
 namespace UKYIEEESpaceJam.assets.scripts;
 
@@ -62,12 +63,17 @@ public partial class Player : Entity
 	private double _dashCooldown;
 	private double _stunTimeout;
 
+	private PackedScene _gunScene;
+	private Gun _gun;
+
 	public override void _Ready()
 	{
 		base._Ready();
 		
 		_animation = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		_healthBar = GetTree().GetCurrentScene().GetNode<ProgressBar>("CanvasLayer/HUD/ProgressBar");
+		_gunScene = GD.Load<PackedScene>("res://assets/Objects/Items/Gun.tscn");
+		_gun = _gunScene.Instantiate<Gun>();
 		
 		GD.Print("hello from player!");
 	}

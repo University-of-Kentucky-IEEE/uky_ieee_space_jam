@@ -1,16 +1,30 @@
 [gd_scene format=3 uid="uid://ipsj3ikrgcyw"]
 
-[ext_resource type="Script" uid="uid://618r8leueno5" path="res://assets/scripts/Player.cs" id="1_4flbx"]
-[ext_resource type="PackedScene" uid="uid://w8r81rqss18l" path="res://assets/objects/Entity.tscn" id="1_rm387"]
-[ext_resource type="PackedScene" uid="uid://bmi1uyg86abym" path="res://assets/objects/Gun.tscn" id="4_i0vk1"]
+[ext_resource type="Script" uid="uid://618r8leueno5" path="res://assets/scripts/Objects/Entities/Player.cs" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://w8r81rqss18l" path="res://assets/Objects/Entities/Entity.tscn" id="1_rm387"]
 
 [node name="Player" unique_id=972041816 instance=ExtResource("1_rm387")]
 script = ExtResource("1_4flbx")
+MovementFriction = 10.0
+Acceleration = 100.0
+DashSpeed = 4000.0
+DashTime = 0.07
+DashCooldown = 0.2
+DashDamage = 40.0
+EnemyContactDamage = 20.0
+IdleCost = 0.5
+MoveCost = 2.0
+DashCost = 10.0
+StunTime = 3.0
 
 [node name="Camera2D" type="Camera2D" parent="." index="2" unique_id=467041152]
 position = Vector2(64, 0)
 position_smoothing_enabled = true
 
-[node name="Gun" parent="Hand/Mount" parent_id_path=PackedInt32Array(2141295286, 1468106578) index="0" unique_id=1202684178 instance=ExtResource("4_i0vk1")]
+[node name="Area2D" parent="Hand" parent_id_path=PackedInt32Array(2141295286) index="1" unique_id=60645343]
+collision_mask = 4
+
+[connection signal="area_entered" from="Hand/Area2D" to="Hand" method="OnHandEnteredReach"]
+[connection signal="area_exited" from="Hand/Area2D" to="Hand" method="OnHandExitedReach"]
 
 [editable path="Hand"]

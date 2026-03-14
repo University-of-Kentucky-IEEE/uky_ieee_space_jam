@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bmi1uyg86abym"]
 
 [ext_resource type="PackedScene" uid="uid://dtfkd7lv8aao3" path="res://assets/Objects/Items/Item.tscn" id="1_i8gjk"]
+[ext_resource type="Script" uid="uid://4t1s3fynx6cs" path="res://assets/scripts/Objects/Items/Gun.cs" id="2_exien"]
 
 [sub_resource type="Gradient" id="Gradient_exien"]
 
@@ -9,6 +10,11 @@ gradient = SubResource("Gradient_exien")
 height = 16
 
 [node name="Gun" unique_id=1593479499 instance=ExtResource("1_i8gjk")]
+script = ExtResource("2_exien")
+
+[node name="Area2D" parent="." index="0" unique_id=1417773485]
+collision_layer = 15
+collision_mask = 15
 
 [node name="Sprite2D" parent="." index="1" unique_id=624073164]
 texture = SubResource("GradientTexture2D_ao0dd")

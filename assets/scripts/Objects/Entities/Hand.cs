@@ -12,7 +12,7 @@ public partial class Hand : Node2D
 	
 	public bool IsHoldingItem => HeldItem != null;
 
-	private Item[] _reachableItems;
+	private List<Item> _reachableItems;
 
 	public override void _Ready()
 	{
@@ -21,16 +21,15 @@ public partial class Hand : Node2D
 		{
 			HeldItem = _mountPoint.GetChild<Item>(0);
 		}
+
+		_reachableItems = new List<Item>();
 	}
-	public override void _Process(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 mousePosition = GetGlobalMousePosition();
 		float rads = MathF.Atan2((mousePosition.Y - GetGlobalPosition().Y), mousePosition.X - GetGlobalPosition().X);
 
 		Rotation = rads;
-
-		_reachableItems = GetNode<Area2D>("Area2D").GetOverlappingAreas().Select(x => x.GetParent<Item>()).ToArray();
-		
 	}
 
 	public void PickupItem()
@@ -58,5 +57,20 @@ public partial class Hand : Node2D
 		if (IsHoldingItem) DropItem();
 		HeldItem = item;
 		_mountPoint.AddChild(item);
+	}
+
+	private void OnHandEnteredReach(Area2D area)
+	{
+		GD.Print(area);
+		if (area.GetParent() is Item i)
+		{
+			_reachableItems.Insert(_reachableItems.Count, i);
+			GD.Print(_reachableItems.Count);
+		}
+	}
+	
+	private void OnHandExitedReach(Area2D area)
+	{
+		_reachableItems.RemoveAll(i => i == area.GetParent());
 	}
 }

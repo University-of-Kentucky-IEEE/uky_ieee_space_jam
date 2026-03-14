@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://vs1qd8e6naw1"]
 
 [ext_resource type="PackedScene" uid="uid://dtfkd7lv8aao3" path="res://assets/Objects/Items/Item.tscn" id="1_r3yfr"]
+[ext_resource type="Script" uid="uid://sfr573k8gdgm" path="res://assets/scripts/Objects/Items/Jar.cs" id="2_5axjw"]
 
 [sub_resource type="Gradient" id="Gradient_5axjw"]
 
@@ -8,6 +9,8 @@
 gradient = SubResource("Gradient_5axjw")
 
 [node name="Jar" unique_id=1593479499 instance=ExtResource("1_r3yfr")]
+script = ExtResource("2_5axjw")
+JamType = 0
 
 [node name="Sprite2D" parent="." index="1" unique_id=624073164]
 texture = SubResource("GradientTexture2D_qadby")
