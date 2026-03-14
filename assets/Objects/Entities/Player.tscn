@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://618r8leueno5" path="res://assets/scripts/Objects/Entities/Player.cs" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://w8r81rqss18l" path="res://assets/Objects/Entities/Entity.tscn" id="1_rm387"]
-[ext_resource type="Texture2D" uid="uid://c8aeu0yfff1r8" path="res://assets/Light/2d_lights_and_shadows_neutral_point_light.webp" id="4_fjq25"]
 [ext_resource type="PackedScene" uid="uid://bmi1uyg86abym" path="res://assets/Objects/Items/Gun.tscn" id="4_i0vk1"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_scjgh"]
+load_path = "res://.godot/imported/2d_lights_and_shadows_neutral_point_light.webp-9296f530b4902e201591bb70366e7c49.ctex"
 
 [node name="Player" unique_id=972041816 instance=ExtResource("1_rm387")]
 script = ExtResource("1_4flbx")
@@ -21,15 +23,17 @@ StunTime = 3.0
 
 [node name="Camera2D" type="Camera2D" parent="." index="2" unique_id=467041152]
 position = Vector2(64, 0)
+zoom = Vector2(0.75, 0.75)
 position_smoothing_enabled = true
 
 [node name="Gun" parent="Hand/Mount" parent_id_path=PackedInt32Array(2141295286, 1468106578) index="0" unique_id=1202684178 instance=ExtResource("4_i0vk1")]
 BulletSpeed = 3000.0
 
 [node name="PointLight2D" type="PointLight2D" parent="." index="5" unique_id=409844773]
+color = Color(0.71875, 0.71875, 0.71875, 1)
 shadow_enabled = true
-shadow_color = Color(0.58456355, 0.58456355, 0.58456355, 0)
-texture = ExtResource("4_fjq25")
+shadow_color = Color(0.19600591, 0.19600591, 0.19600591, 0)
+texture = SubResource("CompressedTexture2D_scjgh")
 texture_scale = 5.0
 
 [editable path="Hand"]

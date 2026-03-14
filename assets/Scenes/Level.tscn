@@ -12,7 +12,7 @@ tile_set = ExtResource("1_3rqxl")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=2009052348]
 position = Vector2(1, 0)
-color = Color(0, 0, 0, 1)
+color = Color(0.08984375, 0.08984375, 0.08984375, 1)
 
 [node name="Player" parent="." unique_id=972041816 instance=ExtResource("2_0rb4c")]
 position = Vector2(0, 1)
