@@ -7,7 +7,7 @@ public partial class Gun : Item
 	[Export]
 	public float BulletSpeed = 3000;
 
-	private PackedScene _bulletScene = GD.Load<PackedScene>("res://assets/objects/Bullet.tscn");
+	private PackedScene _bulletScene = GD.Load<PackedScene>("res://assets/Objects/Bullet.tscn");
 	
 	public override void Use()
 	{

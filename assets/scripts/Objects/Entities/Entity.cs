@@ -2,7 +2,7 @@ using Godot;
 
 namespace UKYIEEESpaceJam.assets.scripts;
 
-public abstract partial class Entity : CharacterBody2D
+public partial class Entity : CharacterBody2D
 {
     [ExportGroup("Status Parameters")]
     [Export]
@@ -11,5 +11,5 @@ public abstract partial class Entity : CharacterBody2D
     protected double _health = 100;
 
     [Export]
-    public abstract double Health { get; set; }
+    public virtual double Health { get; set; }
 }
