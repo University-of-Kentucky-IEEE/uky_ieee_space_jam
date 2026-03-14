@@ -10,6 +10,7 @@ public partial class Enemy : Entity
 	[Export] public float MovementFriction = 10f;
 	[Export] public float StopRadius = 120f;
 	[Export] public override double Health { get; set; }
+	[Export] public bool CanRespawn = true;
 	
 	private Area2D _detectionArea;
 	private CollisionShape2D _collisionShape;
@@ -50,7 +51,7 @@ public partial class Enemy : Entity
 	public override void _PhysicsProcess(double delta)
 	{
 		base._PhysicsProcess(delta);
-		if (_justDied)
+		if (_justDied && CanRespawn)
 		{
 			GetNode<CollisionShape2D>("CollisionShape2D").Disabled = true;
 			Visible = false;
