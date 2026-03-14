@@ -20,6 +20,7 @@ public partial class Enemy : Entity
 	private Vector2 _startPosition;
 	
 	private Timer _respawnTimer;
+	private double _stunCooldown;
 
 	public override void _Ready()
 	{
@@ -45,9 +46,23 @@ public partial class Enemy : Entity
 
 	public override void _PhysicsProcess(double delta)
 	{
-		
 		base._PhysicsProcess(delta);
+		if (_justDied)
+		{
+			GetNode<CollisionShape2D>("CollisionShape2D").Disabled = true;
+			Visible = false;
+			_respawnTimer.Start();
+		}
 		if (_dead) return;
+		if (_stunCooldown > 0)
+		{
+			_stunCooldown -= delta;
+		}
+		else
+		{
+			Stunned = false;
+		}
+		
 		if (_player != null)
 		{
 			float distanceToPlayer = GlobalPosition.DistanceTo(_player.GlobalPosition);
@@ -62,7 +77,6 @@ public partial class Enemy : Entity
 			_navAgent.TargetPosition = _player.GlobalPosition;
 			
 			Vector2 nextPathPosition = _navAgent.GetNextPathPosition();
-			GD.Print(nextPathPosition);
 			Vector2 direction = GlobalPosition.DirectionTo(nextPathPosition);
 
 			Vector2 currVelocity = Velocity;
@@ -81,12 +95,6 @@ public partial class Enemy : Entity
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
-		if (_justDied)
-		{
-			Visible = false;
-			_respawnTimer.Start();
-			
-		}
 	}
 
 	public void OnVelocityComputed(Vector2 safeVelocity)
@@ -95,6 +103,24 @@ public partial class Enemy : Entity
 		MoveAndSlide();
 	}
 
+	public override void Damage(double amount)
+	{
+		base.Damage(amount);
+		GD.Print("Enemy health: " + Health);
+		GD.Print("is dead: " + _dead);
+	}
+
+	public void Shove(Vector2 shove)
+	{
+		Velocity = shove;
+		Stunned = true;
+		_stunCooldown = StunCooldown;
+	}
+
+	[Export]
+	public double StunCooldown = 0.4;
+	
+	public bool Stunned;
 
 	public void _On_Detection_Entered(Node2D body)
 	{
@@ -115,7 +141,13 @@ public partial class Enemy : Entity
 	{
 		GlobalPosition = _startPosition;
 		Visible = true;
+		GetNode<CollisionShape2D>("CollisionShape2D").Disabled = false;
 		Health = MaxHealth;
+	}
+
+	public bool Dead()
+	{
+		return _dead;
 	}
 }
 

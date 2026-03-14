@@ -15,28 +15,30 @@ public partial class Entity : CharacterBody2D
 		get => _health;
 		set => _health = double.Min(MaxHealth, double.Max(value, 0));
 	}
-    
-    protected bool _dead;
-    protected bool _justDied = false;
+	
+	protected bool _dead;
+	protected bool _justDied = false;
 
-    public override void _PhysicsProcess(double delta)
-    {
-        if (_dead && _justDied) _justDied = false;
-        if (!_dead && _health == 0)
-        {
-            _dead = true;
-            _justDied = true;
-        }
-
-        if (_dead && _health > 0)
-        {
-            _dead = false;
-            _justDied = false;
-        }
-    }
+	public override void _PhysicsProcess(double delta)
+	{
+		if (_dead && _justDied) _justDied = false;
+		if (!_dead && Health <= 0)
+		{
+			_dead = true;
+			_justDied = true;
+		}
+		else if (_dead && Health > 0)
+		{
+			_dead = false;
+			_justDied = false;
+		}
+	}
 
 	public virtual void Damage(double amount)
 	{
 		Health -= amount;
+		GD.Print(Health);
 	}
+
+	public virtual void OnColliderEntered(Area2D area) {}
 }
