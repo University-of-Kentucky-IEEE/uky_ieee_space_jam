@@ -34,8 +34,6 @@ public partial class Enemy : Entity
 					break;
 			}
 		}
-
-		_player = GetTree().CurrentScene.GetNode<Player>("Player");
 	}
 
 	public override void _PhysicsProcess(double delta)
