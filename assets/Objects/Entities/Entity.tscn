@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://w8r81rqss18l"]
 
 [ext_resource type="Texture2D" uid="uid://b4nd6qg7hlytv" path="res://Ismael.png" id="2_kpjcp"]
-[ext_resource type="PackedScene" uid="uid://csiju1na8hyh8" path="res://assets/objects/Hand.tscn" id="3_m74n3"]
+[ext_resource type="PackedScene" uid="uid://csiju1na8hyh8" path="res://assets/Objects/Entities/Hand.tscn" id="3_m74n3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sh265"]
 height = 54.0
@@ -43,6 +43,11 @@ animations = [{
 }]
 
 [node name="Entity" type="CharacterBody2D" unique_id=972041816]
+motion_mode = 1
+floor_stop_on_slope = false
+floor_block_on_wall = false
+floor_snap_length = 0.0
+platform_on_leave = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1680430323]
 position = Vector2(0, 20)

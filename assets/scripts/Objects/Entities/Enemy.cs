@@ -52,22 +52,22 @@ public partial class Enemy : Entity
 			}
 
 			_navAgent.TargetPosition = _player.GlobalPosition;
+			
 			Vector2 nextPathPosition = _navAgent.GetNextPathPosition();
+			GD.Print(nextPathPosition);
 			Vector2 direction = GlobalPosition.DirectionTo(nextPathPosition);
 
 			Vector2 currVelocity = Velocity;
 			currVelocity += direction * (float)delta * Acceleration * 125f;
 			currVelocity -= currVelocity / MovementFriction;
 			Velocity = currVelocity;
-
-			_navAgent.SetVelocity(Velocity);
 		}
 		else
 		{
 			// Decelerate to a stop when no player is detected
 			Velocity -= Velocity / MovementFriction;
-			MoveAndSlide();
 		}
+		MoveAndSlide();
 	}
 
 	public override void _Process(double delta)
