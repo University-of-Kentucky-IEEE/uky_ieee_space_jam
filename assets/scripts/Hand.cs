@@ -24,4 +24,10 @@ public partial class Hand : Node2D
 	{
 		item.Reparent(_mountPoint);
 	}
+
+	public void DropItem(Item item)
+	{
+		item.Reparent(GetTree().GetCurrentScene(), true);
+		item.Rotation = 0;
+	}
 }
