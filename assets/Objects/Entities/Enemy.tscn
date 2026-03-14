@@ -8,6 +8,10 @@ radius = 500.0
 
 [node name="Enemy" unique_id=972041816 instance=ExtResource("1_tqr8c")]
 script = ExtResource("2_6jgos")
+Difficulty = 1
+Acceleration = 100.0
+MovementFriction = 10.0
+StopRadius = 120.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="0" unique_id=1812220741]
 
@@ -19,7 +23,12 @@ modulate = Color(1, 0, 0, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0" unique_id=470828254]
 shape = SubResource("CircleShape2D_tqr8c")
 
+[node name="RespawnTimer" type="Timer" parent="." index="5" unique_id=2123450720]
+wait_time = 15.0
+one_shot = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_On_Detection_Entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_On_Detection_Exited"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_On_Respawn_Timer"]
 
 [editable path="Hand"]

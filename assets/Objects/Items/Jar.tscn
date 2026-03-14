@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b0mntuv4ykgr3"]
 
-[ext_resource type="Script" uid="uid://sfr573k8gdgm" path="res://assets/scripts/Jar.cs" id="1_yxy6s"]
+[ext_resource type="Script" uid="uid://sfr573k8gdgm" path="res://assets/scripts/Objects/Items/Jar.cs" id="1_yxy6s"]
 
 [sub_resource type="Gradient" id="Gradient_yxy6s"]
 
@@ -11,5 +11,5 @@ gradient = SubResource("Gradient_yxy6s")
 script = ExtResource("1_yxy6s")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2076107921]
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.6, 0.6)
 texture = SubResource("GradientTexture2D_2k0g2")

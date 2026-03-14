@@ -31,7 +31,7 @@ public partial class Player : Entity
 	{
 		get => _health;
 		set {
-			_health = value;
+			base.Health = value;
 			if (_healthBar != null) _healthBar.Value = value / MaxHealth * 100;
 		}
 	}
@@ -57,7 +57,6 @@ public partial class Player : Entity
 	private double _dashTimeout;
 	private double _dashCooldown;
 
-	private bool _dead;
 
 	public override void _Ready()
 	{
