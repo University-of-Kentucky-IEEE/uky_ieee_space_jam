@@ -74,6 +74,7 @@ public partial class Player : Entity
 		_healthBar = GetTree().GetCurrentScene().GetNode<ProgressBar>("CanvasLayer/HUD/ProgressBar");
 		_gunScene = GD.Load<PackedScene>("res://assets/Objects/Items/Gun.tscn");
 		_gun = _gunScene.Instantiate<Gun>();
+		_hand.GiveItem(_gun);
 		
 		GD.Print("hello from player!");
 	}

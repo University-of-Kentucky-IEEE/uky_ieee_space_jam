@@ -10,7 +10,9 @@ gradient = SubResource("Gradient_exien")
 height = 16
 
 [node name="Gun" unique_id=1593479499 instance=ExtResource("1_i8gjk")]
+z_index = 1
 script = ExtResource("2_exien")
+BulletSpeed = 3000.0
 
 [node name="Area2D" parent="." index="0" unique_id=1417773485]
 collision_layer = 15

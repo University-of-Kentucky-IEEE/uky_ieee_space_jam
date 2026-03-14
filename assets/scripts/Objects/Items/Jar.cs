@@ -33,6 +33,11 @@ public partial class Jar : Item
 		}
 	}
 
+	public override void _Process(double delta)
+	{
+		GlobalRotation = 0;
+	}
+	
 	public override void Use()
 	{
 		GD.Print("Used me jar!");

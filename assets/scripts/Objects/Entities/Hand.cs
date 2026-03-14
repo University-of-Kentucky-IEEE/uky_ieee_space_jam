@@ -35,11 +35,19 @@ public partial class Hand : Node2D
 	public void PickupItem()
 	{
 		if (HeldItem != null) return;
-		
+
 		if (_reachableItems[0].GetParent() == null)
+		{
 			_mountPoint.AddChild(_reachableItems[0]);
+			_reachableItems[0].GlobalPosition = _mountPoint.GlobalPosition;
+			_reachableItems[0].GlobalRotation = _mountPoint.GlobalRotation;
+		}
 		else
-			_reachableItems[0].Reparent(_mountPoint);
+		{
+			_reachableItems[0].Reparent(_mountPoint, false);
+			_reachableItems[0].GlobalPosition = _mountPoint.GlobalPosition;
+			_reachableItems[0].GlobalRotation = _mountPoint.GlobalRotation;
+		}
 		
 		HeldItem = _reachableItems[0];
 	}
@@ -57,6 +65,8 @@ public partial class Hand : Node2D
 		if (IsHoldingItem) DropItem();
 		HeldItem = item;
 		_mountPoint.AddChild(item);
+		item.GlobalPosition = _mountPoint.GlobalPosition;
+		item.GlobalRotation = _mountPoint.GlobalRotation;
 	}
 
 	private void OnHandEnteredReach(Area2D area)

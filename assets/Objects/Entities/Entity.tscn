@@ -49,6 +49,7 @@ radius = 26.0
 height = 64.0
 
 [node name="Entity" type="CharacterBody2D" unique_id=972041816]
+z_index = 2
 collision_layer = 9
 motion_mode = 1
 floor_stop_on_slope = false

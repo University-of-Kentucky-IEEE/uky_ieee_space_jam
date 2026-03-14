@@ -15,6 +15,7 @@ StopRadius = 120.0
 StunCooldown = 0.4
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="0" unique_id=1812220741]
+target_desired_distance = 100.0
 
 [node name="AnimatedSprite2D" parent="." index="2" unique_id=1434163368]
 modulate = Color(1, 0, 0, 1)
