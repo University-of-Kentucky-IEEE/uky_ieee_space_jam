@@ -68,6 +68,12 @@ public partial class Enemy : CharacterBody2D
 		}
 	}
 
+	public override void _Process(double delta)
+	{
+		base._Process(delta);
+		
+	}
+
 	public void OnVelocityComputed(Vector2 safeVelocity)
 	{
 		Velocity = safeVelocity;
@@ -83,6 +89,11 @@ public partial class Enemy : CharacterBody2D
 	public void _On_Detection_Exited(Node2D body)
 	{
 		if(body is Player) _player = null;
+	}
+
+	public void _On_Shoot_Timer()
+	{
+		item.Use();
 	}
 }
 
