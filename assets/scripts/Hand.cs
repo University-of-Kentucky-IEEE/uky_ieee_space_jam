@@ -15,7 +15,7 @@ public partial class Hand : Node2D
 	public override void _Process(double delta)
 	{
 		Vector2 mousePosition = GetGlobalMousePosition();
-		float rads = MathF.Atan2(-(mousePosition.Y - GetGlobalPosition().Y), mousePosition.X - GetGlobalPosition().X);
+		float rads = MathF.Atan2((mousePosition.Y - GetGlobalPosition().Y), mousePosition.X - GetGlobalPosition().X);
 
 		Rotation = rads;
 	}
@@ -23,7 +23,12 @@ public partial class Hand : Node2D
 	public void PickupItem(Item item)
 	{
 		if (HeldItem != null) return;
-		item.Reparent(_mountPoint);
+		
+		if (item.GetParent() == null)
+			_mountPoint.AddChild(item);
+		else
+			item.Reparent(_mountPoint);
+		
 		HeldItem = item;
 	}
 

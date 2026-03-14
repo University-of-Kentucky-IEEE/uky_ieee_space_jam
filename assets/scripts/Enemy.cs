@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using UKYIEEESpaceJam;
+using UKYIEEESpaceJam.assets.scripts;
 
 public partial class Enemy : CharacterBody2D
 {

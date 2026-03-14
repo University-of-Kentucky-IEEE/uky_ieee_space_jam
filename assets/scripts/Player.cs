@@ -1,6 +1,6 @@
 using Godot;
 
-namespace UKYIEEESpaceJam;
+namespace UKYIEEESpaceJam.assets.scripts;
 
 public partial class Player : CharacterBody2D
 {
@@ -18,6 +18,29 @@ public partial class Player : CharacterBody2D
 	public double DashTime = 0.07;
 	[Export]
 	public double DashCooldown = 0.2;
+
+	[ExportGroup("Status Parameters")]
+	[Export]
+	public double MaxHealth = 100;
+
+	private double _health = 100;
+	
+	[Export]
+	public double Health
+	{
+		get => _health;
+		set {
+			_health = value;
+			if (_healthBar != null) _healthBar.Value = value / MaxHealth * 100;
+		}
+	}
+
+	[Export]
+	public double IdleCost = 0.5;
+	[Export]
+	public double MoveCost = 2;
+	[Export]
+	public double DashCost = 10;
 	
 	private static Vector2 GetInputDirection()
 	{
@@ -30,18 +53,29 @@ public partial class Player : CharacterBody2D
 	[Export]
 	public RayCast2D GroundRayCast;
 
-	private AnimatedSprite2D _animation;
 	private Vector2 _inputMovement;
+	
+	private AnimatedSprite2D _animation;
+	private ProgressBar _healthBar;
+	
 	private bool _dashing;
 	private Vector2 _dashDirection;
 	private double _dashTimeout;
 	private double _dashCooldown;
 
+	private bool _dead;
+
 	public override void _Ready()
 	{
 		base._Ready();
 		
-		_animation = (AnimatedSprite2D)FindChild("AnimatedSprite2D");
+		_animation = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		_healthBar = GetTree().GetCurrentScene().GetNode<ProgressBar>("CanvasLayer/HUD/ProgressBar");
+		GD.Print(_healthBar);
+
+
+		Jar j = GD.Load<PackedScene>("res://assets/objects/Jar.tscn").Instantiate<Jar>();
+		GetNode<Hand>("Hand").PickupItem(j);
 		
 		GD.Print("hello from player!");
 	}
@@ -50,13 +84,25 @@ public partial class Player : CharacterBody2D
 	{
 		base._Process(delta);
 
-		if (_dashing)
+		if (!_dead)
 		{
-			ProcessDash(delta);
+			if (_dashing)
+			{
+				ProcessDash(delta);
+			}
+			else
+			{
+				ProcessNormal(delta);
+			}
+
+			if (Health <= 0)
+			{
+				_dead = true;
+			}
 		}
 		else
 		{
-			ProcessNormal(delta);
+			ProcessDead(delta);
 		}
 
 		SetAnimation();
@@ -64,10 +110,9 @@ public partial class Player : CharacterBody2D
 		MoveAndSlide();
 	}
 
-	public void ProcessNormal(double delta)
+	private void ProcessNormal(double delta)
 	{
 		Vector2 v = GetInputDirection();
-		Vector2 damp = -v;
 		
 		// there will be a terminal velocity tuned by the movement parameters of the character
 		Vector2 currVelocity = GetVelocity();
@@ -81,6 +126,15 @@ public partial class Player : CharacterBody2D
 		{
 			_dashCooldown -= delta;
 		}
+
+		if (GetVelocity() != Vector2.Zero)
+		{
+			Health -= MoveCost * delta;
+		}
+		else
+		{
+			Health -= IdleCost * delta;
+		}
 		
 		if (Input.IsActionJustPressed("Dash") && _dashCooldown <= 0)
 		{
@@ -90,10 +144,12 @@ public partial class Player : CharacterBody2D
 		}
 	}
 
-	public void ProcessDash(double delta)
+	private void ProcessDash(double delta)
 	{
 		SetVelocity(_dashDirection * DashSpeed);
 		_dashTimeout -= delta;
+		Health -= DashCost * delta;
+		
 		if (_dashTimeout < 0)
 		{
 			_dashing = false;
@@ -101,7 +157,12 @@ public partial class Player : CharacterBody2D
 		}
 	}
 
-	public void SetAnimation()
+	private void ProcessDead(double delta)
+	{
+		SetVelocity(Vector2.Zero);
+	}
+
+	private void SetAnimation()
 	{
 		_animation.Animation = "Walking";
 		if (!_dashing)

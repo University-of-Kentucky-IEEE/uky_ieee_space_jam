@@ -6,3 +6,7 @@
 .idea/
 *.user
 
+# random assets we don't need
+assets/TileMap_SC.zip
+assets/Tilemap_SC/Grafika/
+

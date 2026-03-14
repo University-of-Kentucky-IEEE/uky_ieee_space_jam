@@ -6,4 +6,4 @@
 script = ExtResource("1_dc07c")
 
 [node name="Mount" type="Node2D" parent="." unique_id=1468106578]
-position = Vector2(7, 0)
+position = Vector2(64, 0)

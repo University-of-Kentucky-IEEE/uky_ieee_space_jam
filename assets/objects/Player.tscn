@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://618r8leueno5" path="res://assets/scripts/Player.cs" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://b4nd6qg7hlytv" path="res://Ismael.png" id="2_kpjcp"]
+[ext_resource type="PackedScene" uid="uid://csiju1na8hyh8" path="res://assets/objects/Hand.tscn" id="3_m74n3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sh265"]
 height = 54.0
@@ -59,3 +60,8 @@ animation = &"Walking"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1618216162]
 position_smoothing_enabled = true
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=241611551]
+remote_path = NodePath("../Camera2D")
+
+[node name="Hand" parent="." unique_id=2141295286 instance=ExtResource("3_m74n3")]
