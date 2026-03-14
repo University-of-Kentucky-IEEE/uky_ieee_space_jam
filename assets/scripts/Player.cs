@@ -71,11 +71,6 @@ public partial class Player : CharacterBody2D
 		
 		_animation = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		_healthBar = GetTree().GetCurrentScene().GetNode<ProgressBar>("CanvasLayer/HUD/ProgressBar");
-		GD.Print(_healthBar);
-
-
-		Jar j = GD.Load<PackedScene>("res://assets/objects/Jar.tscn").Instantiate<Jar>();
-		GetNode<Hand>("Hand").PickupItem(j);
 		
 		GD.Print("hello from player!");
 	}
@@ -141,6 +136,11 @@ public partial class Player : CharacterBody2D
 			_dashing = true;
 			_dashDirection = v;
 			_dashTimeout = DashTime;
+		}
+
+		if (Input.IsActionJustPressed("Shoot"))
+		{
+			GetNode<Hand>("Hand").HeldItem?.Use();
 		}
 	}
 

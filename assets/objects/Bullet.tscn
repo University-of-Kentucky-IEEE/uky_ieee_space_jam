@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://csr6ubviquhjo"]
+
+[ext_resource type="Script" uid="uid://cnvhjc1neo7df" path="res://assets/scripts/Bullet.cs" id="1_ty5u5"]
+
+[sub_resource type="Gradient" id="Gradient_oanus"]
+offsets = PackedFloat32Array(0, 0.48235294, 0.5092937, 0.51672864, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0.9529412, 1, 0.40892193, 0.40892193, 0.40892193, 1, 0.32534668, 0.32534668, 0.32534668, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r45dv"]
+gradient = SubResource("Gradient_oanus")
+width = 8
+height = 8
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oanus"]
+size = Vector2(8, 8)
+
+[node name="Bullet" type="CharacterBody2D" unique_id=1802913716]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_ty5u5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=98815171]
+texture = SubResource("GradientTexture2D_r45dv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1237886365]
+shape = SubResource("RectangleShape2D_oanus")
