@@ -19,6 +19,13 @@ public partial class Entity : CharacterBody2D
 	protected bool _dead;
 	protected bool _justDied = false;
 
+	protected Hand _hand;
+
+	public override void _Ready()
+	{
+		_hand = GetNode<Hand>("Hand");
+	}
+
 	public override void _PhysicsProcess(double delta)
 	{
 		if (_dead && _justDied) _justDied = false;
