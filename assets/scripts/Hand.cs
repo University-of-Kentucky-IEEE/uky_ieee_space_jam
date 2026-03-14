@@ -11,6 +11,10 @@ public partial class Hand : Node2D
 	public override void _Ready()
 	{
 		_mountPoint = GetNode<Node2D>("Mount");
+		if (_mountPoint.GetChildren().Count > 0)
+		{
+			HeldItem = _mountPoint.GetChild<Item>(0);
+		}
 	}
 	public override void _Process(double delta)
 	{

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bmi1uyg86abym"]
+
+[ext_resource type="Script" uid="uid://4t1s3fynx6cs" path="res://assets/scripts/Gun.cs" id="1_7lp6f"]
+
+[sub_resource type="Gradient" id="Gradient_nwtj6"]
+offsets = PackedFloat32Array(0, 0.3977695, 0.58364314, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.5650558, 0.5650558, 0.5650558, 1, 0.6523871, 0.6523871, 0.6523871, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7lp6f"]
+gradient = SubResource("Gradient_nwtj6")
+height = 16
+
+[node name="Gun" type="Node2D" unique_id=1202684178]
+script = ExtResource("1_7lp6f")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1019624220]
+texture = SubResource("GradientTexture2D_7lp6f")
