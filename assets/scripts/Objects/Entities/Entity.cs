@@ -41,4 +41,9 @@ public partial class Entity : CharacterBody2D
 	}
 
 	public virtual void OnColliderEntered(Area2D area) {}
+
+	public virtual void Shove(Vector2 shove)
+	{
+		Velocity = shove;
+	}
 }

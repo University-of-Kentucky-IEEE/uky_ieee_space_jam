@@ -83,7 +83,7 @@ public partial class Enemy : Entity
 			Vector2 direction = GlobalPosition.DirectionTo(nextPathPosition);
 
 			Vector2 currVelocity = Velocity;
-			currVelocity += direction * (float)delta * Acceleration * 125f;
+			currVelocity += direction * (float)delta * Acceleration * 75f;
 			currVelocity -= currVelocity / MovementFriction;
 			Velocity = currVelocity;
 		}
@@ -113,9 +113,9 @@ public partial class Enemy : Entity
 		GD.Print("is dead: " + _dead);
 	}
 
-	public void Shove(Vector2 shove)
+	public override void Shove(Vector2 shove)
 	{
-		Velocity = shove;
+		base.Shove(shove);
 		Stunned = true;
 		_stunCooldown = StunCooldown;
 	}

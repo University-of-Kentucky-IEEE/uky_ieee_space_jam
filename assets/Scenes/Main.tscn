@@ -639,6 +639,17 @@ tile_set = SubResource("TileSet_r0du0")
 [node name="HUD" parent="CanvasLayer" unique_id=576364251 instance=ExtResource("3_fv13k")]
 
 [node name="Player" parent="." unique_id=972041816 instance=ExtResource("1_glv2v")]
+MovementFriction = 10.0
+Acceleration = 100.0
+DashSpeed = 4000.0
+DashTime = 0.07
+DashCooldown = 0.2
+DashDamage = 40.0
+EnemyContactDamage = 20.0
+IdleCost = 0.5
+MoveCost = 2.0
+DashCost = 10.0
+IsRpg = true
 
 [node name="Enemy" parent="." unique_id=722299190 instance=ExtResource("4_efdcx")]
 position = Vector2(-173, 226)

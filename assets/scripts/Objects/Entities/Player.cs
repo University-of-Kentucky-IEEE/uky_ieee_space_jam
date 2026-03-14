@@ -46,12 +46,10 @@ public partial class Player : Entity
 	{
 		return Input.GetVector("MoveLeft", "MoveRight", "MoveUp", "MoveDown");
 	}
-	
+
 	[ExportGroup("Other")]
 	[Export]
-	public bool IsRpg = true;
-	[Export]
-	public RayCast2D GroundRayCast;
+	public double StunTime = 3.0;
 
 	private Vector2 _inputMovement;
 	
@@ -62,6 +60,7 @@ public partial class Player : Entity
 	private Vector2 _dashDirection;
 	private double _dashTimeout;
 	private double _dashCooldown;
+	private double _stunTimeout;
 
 
 	public override void _Ready()
@@ -77,6 +76,11 @@ public partial class Player : Entity
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
+
+		if (_stunTimeout > 0)
+			_stunTimeout -= delta;
+		else
+			Stunned = false;
 
 		if (!_dead)
 		{
@@ -188,27 +192,33 @@ public partial class Player : Entity
 		base.OnColliderEntered(area);
 		
 		Node parent = area.GetParent();
-		if (parent is Enemy enemy)
+		
+		if (parent is not Enemy enemy) return;
+		
+		if (_dashing)
 		{
-			if (_dashing)
+			if (enemy.Dead()) return;
+				
+			enemy.Damage(DashDamage);
+			enemy.Shove(_dashDirection * 5000);
+			_dashDirection *= -1;
+			if (enemy.Health <= 0)
 			{
-				if (!enemy.Dead())
-				{
-					enemy.Damage(DashDamage);
-					enemy.Shove(_dashDirection * 5000);
-					if (enemy.Health <= 0)
-					{
-						Health += enemy.MaxHealth;
-					}
-				}
-			}
-			else
-			{
-				if (!enemy.Stunned)
-					Damage(EnemyContactDamage);
+				Health += enemy.MaxHealth;
 			}
 		}
-		
-		
+		else
+		{
+			if (enemy.Stunned || Stunned) return;
+			
+			Damage(EnemyContactDamage);
+			Vector2 toEnemy = enemy.GlobalPosition - GlobalPosition;
+			Shove(-toEnemy.Normalized() * 1000);
+			
+			Stunned = true;
+			_stunTimeout = StunTime;
+		}
 	}
+
+	public bool Stunned { get; set; }
 }
