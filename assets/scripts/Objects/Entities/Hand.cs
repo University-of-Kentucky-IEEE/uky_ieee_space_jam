@@ -10,6 +10,8 @@ public partial class Hand : Node2D
 	private Node2D _mountPoint;
 	public Item? HeldItem { get; private set; }
 	
+	public bool IsHoldingItem => HeldItem != null;
+
 	private Item[] _reachableItems;
 
 	public override void _Ready()
@@ -49,5 +51,12 @@ public partial class Hand : Node2D
 		HeldItem.Reparent(GetTree().GetCurrentScene(), true);
 		HeldItem.Rotation = 0;
 		HeldItem = null;
+	}
+
+	public void GiveItem(Item item)
+	{
+		if (IsHoldingItem) DropItem();
+		HeldItem = item;
+		_mountPoint.AddChild(item);
 	}
 }
