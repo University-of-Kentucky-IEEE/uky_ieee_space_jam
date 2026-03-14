@@ -115,7 +115,7 @@ public partial class Enemy : Entity
 	{
 		GlobalPosition = _startPosition;
 		Visible = true;
-		_health = MaxHealth;
+		Health = MaxHealth;
 	}
 }
 
