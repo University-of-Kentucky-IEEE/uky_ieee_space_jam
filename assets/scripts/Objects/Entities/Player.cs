@@ -71,8 +71,7 @@ public partial class Player : Entity
 		base._Ready();
 		
 		_animation = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-		ProgressBar healthBar = GetNode<ProgressBar>("%ProgressBar");
-		//_healthBar = GetTree().GetCurrentScene().GetNode<ProgressBar>("CanvasLayer/HUD/ProgressBar");
+		_healthBar = GetTree().GetCurrentScene().GetNode<ProgressBar>("CanvasLayer/HUD/ProgressBar");
 		_gunScene = GD.Load<PackedScene>("res://assets/Objects/Items/Gun.tscn");
 		_gun = _gunScene.Instantiate<Gun>();
 		_hand.GiveItem(_gun);

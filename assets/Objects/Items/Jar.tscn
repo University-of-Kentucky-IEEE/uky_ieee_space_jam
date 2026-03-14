@@ -1,16 +1,12 @@
-[gd_scene format=3 uid="uid://vs1qd8e6naw1"]
+[gd_scene format=3 uid="uid://b0mntuv4ykgr3"]
 
 [ext_resource type="PackedScene" uid="uid://dtfkd7lv8aao3" path="res://assets/Objects/Items/Item.tscn" id="1_r3yfr"]
 [ext_resource type="Script" uid="uid://sfr573k8gdgm" path="res://assets/scripts/Objects/Items/Jar.cs" id="2_5axjw"]
-
-[sub_resource type="Gradient" id="Gradient_5axjw"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_qadby"]
-gradient = SubResource("Gradient_5axjw")
+[ext_resource type="Texture2D" uid="uid://gfucvb50b0c6" path="res://jamjar.png" id="3_qadby"]
 
 [node name="Jar" unique_id=1593479499 instance=ExtResource("1_r3yfr")]
 script = ExtResource("2_5axjw")
 JamType = 0
 
 [node name="Sprite2D" parent="." index="1" unique_id=624073164]
-texture = SubResource("GradientTexture2D_qadby")
+texture = ExtResource("3_qadby")
