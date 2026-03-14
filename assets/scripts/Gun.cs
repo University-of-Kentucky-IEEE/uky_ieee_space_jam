@@ -18,6 +18,5 @@ public partial class Gun : Item
 		
 		GetTree().GetCurrentScene().AddChild(b);
 		b.GlobalPosition = GlobalPosition;
-		GD.Print("YIPPEEE");
 	}
 }

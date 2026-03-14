@@ -2,7 +2,7 @@ using Godot;
 
 namespace UKYIEEESpaceJam.assets.scripts;
 
-public partial class Player : CharacterBody2D
+public partial class Player : Entity
 {
 	[ExportGroup("Walking Parameters")]
 	[Export]
@@ -19,14 +19,15 @@ public partial class Player : CharacterBody2D
 	[Export]
 	public double DashCooldown = 0.2;
 
-	[ExportGroup("Status Parameters")]
 	[Export]
-	public double MaxHealth = 100;
-
-	private double _health = 100;
+	public double IdleCost = 0.5;
+	[Export]
+	public double MoveCost = 2;
+	[Export]
+	public double DashCost = 10;
 	
 	[Export]
-	public double Health
+	public override double Health 
 	{
 		get => _health;
 		set {
@@ -34,13 +35,6 @@ public partial class Player : CharacterBody2D
 			if (_healthBar != null) _healthBar.Value = value / MaxHealth * 100;
 		}
 	}
-
-	[Export]
-	public double IdleCost = 0.5;
-	[Export]
-	public double MoveCost = 2;
-	[Export]
-	public double DashCost = 10;
 	
 	private static Vector2 GetInputDirection()
 	{

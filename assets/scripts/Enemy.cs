@@ -3,12 +3,14 @@ using System;
 using UKYIEEESpaceJam;
 using UKYIEEESpaceJam.assets.scripts;
 
-public partial class Enemy : CharacterBody2D
+public partial class Enemy : Entity
 {
 	[Export] public EnemyDifficulty Difficulty = EnemyDifficulty.Easy;
 	[Export] public float Acceleration = 100f;
 	[Export] public float MovementFriction = 10f;
 	[Export] public float StopRadius = 120f;
+	[Export] public override double Health { get; set; }
+	
 	private Area2D _detectionArea;
 	private CollisionShape2D _collisionShape;
 	private NavigationAgent2D _navAgent;
@@ -93,7 +95,7 @@ public partial class Enemy : CharacterBody2D
 
 	public void _On_Shoot_Timer()
 	{
-		item.Use();
+		GetNode<Hand>("Hand").HeldItem?.Use();
 	}
 }
 
