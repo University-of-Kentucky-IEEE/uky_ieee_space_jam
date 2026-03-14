@@ -62,7 +62,6 @@ public partial class Player : Entity
 	private double _dashCooldown;
 	private double _stunTimeout;
 
-
 	public override void _Ready()
 	{
 		base._Ready();
@@ -96,6 +95,12 @@ public partial class Player : Entity
 			if (Health <= 0)
 			{
 				_dead = true;
+			}
+
+			if (Input.IsActionJustPressed("PickupDrop"))
+			{
+				if(_hand.IsHoldingItem) _hand.DropItem();
+				else _hand.PickupItem();
 			}
 		}
 		else
