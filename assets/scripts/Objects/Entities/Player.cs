@@ -19,6 +19,12 @@ public partial class Player : Entity
 	[Export]
 	public double DashCooldown = 0.2;
 
+	[ExportGroup("Damage Parameters")]
+	[Export]
+	public double DashDamage = 40;
+	[Export]
+	public double EnemyContactDamage = 20;
+	
 	[Export]
 	public double IdleCost = 0.5;
 	[Export]
@@ -175,5 +181,34 @@ public partial class Player : Entity
 		{
 			_animation.Stop();
 		}
+	}
+
+	public override void OnColliderEntered(Area2D area)
+	{
+		base.OnColliderEntered(area);
+		
+		Node parent = area.GetParent();
+		if (parent is Enemy enemy)
+		{
+			if (_dashing)
+			{
+				if (!enemy.Dead())
+				{
+					enemy.Damage(DashDamage);
+					enemy.Shove(_dashDirection * 5000);
+					if (enemy.Health <= 0)
+					{
+						Health += enemy.MaxHealth;
+					}
+				}
+			}
+			else
+			{
+				if (!enemy.Stunned)
+					Damage(EnemyContactDamage);
+			}
+		}
+		
+		
 	}
 }

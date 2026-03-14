@@ -73,4 +73,6 @@ animation = &"Walking"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collider" unique_id=1342122841]
 shape = SubResource("CapsuleShape2D_meusr")
 
+[connection signal="area_entered" from="Collider" to="." method="OnColliderEntered"]
+
 [editable path="Hand"]
