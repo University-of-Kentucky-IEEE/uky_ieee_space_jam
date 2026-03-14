@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UKYIEEESpaceJam;
 
 public partial class Hand : Node2D
@@ -7,6 +9,8 @@ public partial class Hand : Node2D
 	
 	private Node2D _mountPoint;
 	public Item? HeldItem { get; private set; }
+	
+	private Item[] _reachableItems;
 
 	public override void _Ready()
 	{
@@ -22,24 +26,28 @@ public partial class Hand : Node2D
 		float rads = MathF.Atan2((mousePosition.Y - GetGlobalPosition().Y), mousePosition.X - GetGlobalPosition().X);
 
 		Rotation = rads;
+
+		_reachableItems = GetNode<Area2D>("Area2D").GetOverlappingAreas().Select(x => x.GetParent<Item>()).ToArray();
+		
 	}
 
-	public void PickupItem(Item item)
+	public void PickupItem()
 	{
 		if (HeldItem != null) return;
 		
-		if (item.GetParent() == null)
-			_mountPoint.AddChild(item);
+		if (_reachableItems[0].GetParent() == null)
+			_mountPoint.AddChild(_reachableItems[0]);
 		else
-			item.Reparent(_mountPoint);
+			_reachableItems[0].Reparent(_mountPoint);
 		
-		HeldItem = item;
+		HeldItem = _reachableItems[0];
 	}
 
-	public void DropItem(Item item)
+	public void DropItem()
 	{
-		if(item == null) return;
-		item.Reparent(GetTree().GetCurrentScene(), true);
-		item.Rotation = 0;
+		if (HeldItem == null) return;
+		HeldItem.Reparent(GetTree().GetCurrentScene(), true);
+		HeldItem.Rotation = 0;
+		HeldItem = null;
 	}
 }
